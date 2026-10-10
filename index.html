@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💖 For You 💖</title>
+
+  <!-- Google Fonts: Fredoka (Bold), Patrick Hand (Handwriting), Dancing Script (Cursive) -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Fredoka:wght@500;600;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+
+  <style>
+    /* ========== RESET & BASE ========== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Patrick Hand', cursive;
+      background: #2a2a2a; /* Dark background behind the card */
+      overflow: hidden;
+    }
+
+    /* ========== MAIN CARD WRAPPER ========== */
+    .card-wrapper {
+      width: 800px;
+      max-width: 100vw;
+      height: 100vh;
+      max-height: 600px;
+      position: relative;
+      background-color: #d8547a; /* The dark pink frame */
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    /* The Cream Grid Paper */
+    .grid-bg {
+      position: absolute;
+      top: 0; bottom: 0; left: 0; right: 0;
+      background-color: #fcf9f5;
+      background-image: 
+        linear-gradient(#e5e5e5 1px, transparent 1px),
+        linear-gradient(90deg, #e5e5e5 1px, transparent 1px);
+      background-size: 25px 25px;
+      /* Creating the wavy blob shape from the screenshots */
+      clip-path: polygon(
+        25% 0%, 100% 0%, 100% 85%, 75% 100%, 0% 100%, 0% 30%, 15% 15%
+      );
+      border-radius: 40px;
+      z-index: 0;
+      transition: all 0.5s ease;
+    }
+
+    /* Pink wavy blobs using CSS border-radius */
+    .pink-blob-left {
+      position: absolute;
+      top: -10%; left: -10%;
+      width: 35%; height: 110%;
+      background: #d8547a;
+      border-radius: 50% 40% 50% 30%;
+      z-index: 1;
+    }
+    .pink-blob-right {
+      position: absolute;
+      bottom: -15%; right: -5%;
+      width: 40%; height: 40%;
+      background: #d8547a;
+      border-radius: 40% 50% 30% 50%;
+      z-index: 1;
+    }
+
+    /* ========== SCREENS ========== */
+    .screen {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+      z-index: 10;
+      padding: 20px;
+    }
+
+    .screen.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* ========== TYPOGRAPHY ========== */
+    h1.blocky {
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      color: #b54a6b;
+      font-size: 3.5rem;
+      letter-spacing: 2px;
+      margin-bottom: 5px;
+      text-shadow: 2px 2px 0px rgba(255,255,255,0.5);
+    }
+
+    h2.cursive {
+      font-family: 'Dancing Script', cursive;
+      color: #333;
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    h3.cursive-thin {
+      font-family: 'Dancing Script', cursive;
+      color: #555;
+      font-size: 2.2rem;
+      font-weight: 600;
+    }
+
+    p.caps {
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      color: #b54a6b;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      margin-top: 8px;
+    }
+
+    /* ========== BUTTONS ========== */
+    .btn-row {
+      display: flex;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .btn-pink {
+      background: #b54a6b;
+      color: #fff;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      padding: 10px 40px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 6px;
+      transition: transform 0.2s;
+    }
+    .btn-pink:hover { transform: scale(1.05); }
+
+    .btn-text {
+      background: none;
+      border: none;
+      color: #fff;
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.5rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 5px;
+      position: absolute;
+      bottom: 30px;
+      right: 40px;
+      transition: transform 0.2s;
+    }
+    .btn-text:hover { transform: scale(1.1); }
+
+    .btn-text-pink {
+      color: #b54a6b;
+      right: auto;
+      position: relative;
+      bottom: 0;
+      margin-top: 20px;
+    }
+
+    /* ========== STICKERS ========== */
+    .sticker {
+      max-width: 180px;
+      max-height: 180px;
+      object-fit: contain;
+      z-index: 15;
+    }
+    .sticker-float {
+      animation: float 3s ease-in-out infinite;
+    }
+    .sticker-tr {
+      position: absolute;
+      top: 30px; right: 50px;
+      max-width: 200px;
+    }
+    .sticker-center {
+      margin-bottom: -15px;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* ========== ENVELOPE (SCREEN 6) ========== */
+    .envelope-wrapper {
+      cursor: pointer;
+      transition: transform 0.3s;
+      margin-bottom: 20px;
+    }
+    .envelope-wrapper:hover { transform: scale(1.05); }
+    
+    .envelope-img {
+      width: 300px;
+    }
+
+    .letter-content {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      animation: fadeUp 0.8s ease forwards;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      border: 2px solid #e5e5e5;
+      max-width: 80%;
+      position: relative;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .letter-content.show { display: flex; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .locket-photos {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    .locket-photo {
+      width: 90px; height: 90px;
+      object-fit: cover;
+      clip-path: path('M45,80 C22,60 0,45 0,27 C0,12 12,0 27,0 C36,0 43,5 45,13 C47,5 54,0 63,0 C78,0 90,12 90,27 C90,45 68,60 45,80 Z');
+    }
+
+    /* ========== PHOTO WALL (SCREEN 7) ========== */
+    .polaroid-wall {
+      position: relative;
+      width: 100%;
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+    .clothesline {
+      position: absolute;
+      top: 15px; left: 10%; right: 10%;
+      height: 2px;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      z-index: 0;
+    }
+    .polaroid {
+      background: #fff;
+      padding: 10px 10px 35px 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      z-index: 2;
+      position: relative;
+    }
+    .polaroid img { width: 140px; height: 140px; object-fit: cover; }
+    .clip {
+      position: absolute;
+      top: -15px; left: 50%;
+      transform: translateX(-50%);
+      width: 12px; height: 30px;
+      background: #4a7ab5;
+      border-radius: 2px;
+    }
+
+    /* ========== GIFT & HUG (SCREENS 8 & 9) ========== */
+    .gift-box {
+      width: 250px;
+      cursor: pointer;
+      animation: float 3s ease-in-out infinite;
+    }
+    .hug-video {
+      width: 400px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .corner-decor {
+      position: absolute;
+      bottom: 20px; right: 20px;
+      width: 120px;
+    }
+
+    /* ========== PASSWORD INPUT ========== */
+    .password-input {
+      padding: 15px 25px;
+      font-size: 1.5rem;
+      border: 3px solid #b54a6b;
+      border-radius: 30px;
+      text-align: center;
+      outline: none;
+      font-family: 'Fredoka', sans-serif;
+      margin-bottom: 20px;
+    }
+    .error-msg { color: #b54a6b; font-size: 1.2rem; font-weight: bold; }
+
+    /* ========== MUSIC ========== */
+    .music-btn {
+      position: absolute; top: 15px; left: 15px;
+      width: 40px; height: 40px;
+      background: #fff; border: 2px solid #b54a6b; border-radius: 50%;
+      color: #b54a6b; cursor: pointer; z-index: 999;
+    }
+
+    /* Responsive for smaller laptops/tablets */
+    @media (max-width: 850px) {
+      .card-wrapper { width: 100vw; height: 100vh; border-radius: 0; }
+      .polaroid img { width: 100px; height: 100px; }
+      h1.blocky { font-size: 2.5rem; }
+      h2.cursive { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- MUSIC PLAYER -->
+<button class="music-btn" id="musicBtn" onclick="toggleMusic()">▶</button>
+<audio id="bgMusic" loop preload="auto">
+  <source src="assets/music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card-wrapper">
+  
+  <!-- Wavy Backgrounds -->
+  <div class="pink-blob-left"></div>
+  <div class="pink-blob-right"></div>
+  <div class="grid-bg"></div>
+
+  <!-- ============================================ -->
+  <!-- SCREEN 1: PASSWORD -->
+  <!-- ============================================ -->
+  <div class="screen active" id="screen1">
+    <h2 class="cursive">Enter the password to view 💕</h2>
+    <input type="password" class="password-input" id="passwordInput" placeholder="Password..." autocomplete="off">
+    <button class="btn-pink" onclick="checkPassword()" style="text-decoration:none;">Unlock</button>
+    <p class="error-msg" id="errorMsg"></p>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- SCREEN 2: THE ASK -->
+  <!-- ============================================ -->
+  <div class="screen" id="screen2">
+    <!-- Dog with rose top right -->
+    <img src="assets/puppy-rose.gif" class="sticker sticker-tr" alt="Puppy with Rose">
+
+    <h1 class="blocky">HEY!!</h1>
+    <h2 class="cursive">I made something for you</h2>
+    <h3 class="cursive-thin">Do you want to see?</h3>
+
+    <div class="btn-row">
+      <button class="btn-pink" onclick="goToScreen('screen4')">Yes</button>
+      <button class="btn-pink" onclick="goToScreen('screen3')">No</button>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- SCREEN 3: TRAP (NO) -->
+  <!-- ============================================ -->
+  <div class="screen" id="screen3">
+    <img src="assets/angry-puppy.gif" class="sticker sticker-center" alt="Angry Puppy">
+    <h1 class="blocky" style="margin-top: 10px;">HOW DARE YOU</h1>
+    
+    <div class="btn-row">
+      <button class="btn-pink" onclick="goToScreen('screen2')">Go back</button>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- SCREEN 4: YES / GOOD GURL -->
+  <!-- ============================================ -->
+  <div class="screen" id="screen4">
+    <img src="assets/happy-dog.gif" class="sticker sticker-center" alt="Happy Dog">
+    <h1 class="blocky" style="margin-top: 10px;">That's a good gurl!!</h1>
+    
+    <div class="btn-row">
+      <button class="btn-pink" onclick="goToScreen('screen5')">Click</button>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- SCREEN 5: BIRTHDAY WISH -->
+  <!-- ============================================ -->
+  <div class="screen" id="screen5">
+    <img src="assets/bday-dog.gif" class="sticker sticker-center" alt="Birthday Dog">
+    <h1 class="blocky">HAPPY BIRTHDAY BBG</h1>
+    <p class="caps">YOU ARE MY FAVORITE NOTIFICATION 💕</p>
+    <p class="caps">STAY CUTE, STAY HAPPY, STAY MINE 🔪💕</p>
+
+    <!-- Bottom right "Next" button -->
+    <button class="btn-text" onclick="goToScreen('screen6')">Next</button>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- SCREEN 6: ENVELOPE & LETTER -->
+  <!-- ============================================ -->
+  <div class="screen" id="screen6">
+    
+    <div class="envelope-wrapper" id="envelopeWrapper" onclick="openEnvelope()">
+      <img src="assets/envelope.png" class="envelope-img" id="envelopeImg" alt="Pink Envelope">
+      <h2 class="cursive" id="envelopeText" style="color: #b54a6b; text-decoration: underline;">Tap here to open</h2>
+    </div>
+
+    <!-- Letter Content -->
+    <div class="letter-content" id="letterContent">
+      <div style="font-family: 'Patrick Hand', cursive; font-size: 1.3rem; color: #333; text-align: center;">
+        <p>Happy Birthday to the person who makes my world a little brighter just by being in it. ❤️</p>
+        <p>I’m so grateful for every smile, every memory, and every moment we share.</p>
+        <p>You deserve all the happiness, love, and beautiful things life has to offer. ✨</p>
+        <p>I hope this year brings you closer to all your dreams.</p>
+        <p style="font-weight: bold; color: #b54a6b; margin-top:10px;">Happy Birthday, my love — you’ll always have a special place in my heart. ❤️🎂</p>
+      </div>
+
+      <!-- Locket Photos -->
+      <div class="locket-photos">
+        <img src="assets/couple-heart1.jpg" class="locket-photo" alt="Photo 1">
+        <img src="assets/couple-heart2.jpg" class="locket-photo" alt="Photo 2">
+      </div>
+
+      <button class="btn-text btn-text-pink" onclick="goToScreen('screen7')">
+        <img src="assets/camera-icon.png" style="width:30px; vertical-align:middle;"> Click here
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- SCREEN 7: PHOTO WALL -->
+  <!-- ============================================ -->
+  <div class="screen" id="screen7">
+    <div class="polaroid-wall">
+      <div class="clothesline"></div>
+      
+      <div class="polaroid" style="transform: rotate(-4deg);">
+        <div class="clip"></div>
+        <img src="assets/photo1.jpg" alt="Memory 1">
+      </div>
+      
+      <div class="polaroid" style="transform: rotate(2deg); margin-top: 15px;">
+        <div class="clip"></div>
+        <img src="assets/photo2.jpg" alt="Memory 2">
+      </div>
+      
+      <div class="polaroid" style="transform: rotate(-3deg);">
+        <div class="clip"></div>
+        <img src="assets/photo3.jpg" alt="Memory 3">
+      </div>
+    </div>
+
+    <h1 class="blocky" style="font-size: 4rem; color: #ffb6c1;">I LOVE YOU</h1>
+    <p style="font-family: 'Patrick Hand', cursive; font-size: 1.5rem; color: #fff;">You don't know how much you mean to me</p>
+
+    <!-- Bottom right Click here + Gift Icon -->
+    <button class="btn-text" onclick="goToScreen('screen8')">
+      <img src="assets/gift-icon.png" style="width:40px; vertical-align:middle;"> Click here
+    </button>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- SCREEN 8: SURPRISE BOX -->
+  <!-- ============================================ -->
+  <div class="screen" id="screen8">
+    <h2 class="cursive" style="color: #b54a6b; font-size: 3.5rem;">Here's a surprise for you!!!</h2>
+    
+    <img src="assets/gift-box.png" class="gift-box" onclick="goToScreen('screen9')" alt="Gift Box">
+    <p style="font-family: 'Patrick Hand', cursive; font-size: 1.5rem; color: #555;">↖ Tap here</p>
+
+    <img src="assets/dog-bag.png" class="corner-decor" alt="Dog with bag">
+  </div>
+
+  <!-- ============================================ -->
+  <!-- SCREEN 9: VIRTUAL HUG -->
+  <!-- ============================================ -->
+  <div class="screen" id="screen9">
+    <h2 class="cursive" style="color: #b54a6b; font-size: 3.5rem; margin-bottom: 20px;">Here is virtual hug for you</h2>
+    
+    <video class="hug-video" id="hugVideo" loop muted playsinline>
+      <source src="assets/hug-video.mp4" type="video/mp4">
+    </video>
+
+    <img src="assets/bday-flowers.png" class="corner-decor" alt="Happy Birthday Flowers">
+  </div>
+
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+  const SECRET_PASSWORD = "iloveyou";
+
+  // Music Controls
+  const bgMusic = document.getElementById('bgMusic');
+  const musicBtn = document.getElementById('musicBtn');
+  let isPlaying = false;
+
+  function toggleMusic() {
+    if (isPlaying) {
+      bgMusic.pause();
+      musicBtn.textContent = '▶';
+      isPlaying = false;
+    } else {
+      bgMusic.volume = 0.4;
+      bgMusic.play().then(() => {
+        musicBtn.textContent = '⏸';
+        isPlaying = true;
+      });
+    }
+  }
+
+  // Password Logic
+  function checkPassword() {
+    const input = document.getElementById('passwordInput').value.trim().toLowerCase();
+    if (input === SECRET_PASSWORD.toLowerCase()) {
+      document.getElementById('errorMsg').textContent = '';
+      goToScreen('screen2');
+      if (!isPlaying) toggleMusic(); // auto play music
+    } else {
+      document.getElementById('errorMsg').textContent = '❌ Wrong password!';
+    }
+  }
+  document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') checkPassword();
+  });
+
+  // Screen Switcher
+  function goToScreen(screenId) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(screenId).classList.add('active');
+
+    // Auto-play the hug video when reaching Screen 9
+    if (screenId === 'screen9') {
+      document.getElementById('hugVideo').play();
+    }
+  }
+
+  // Open Envelope
+  function openEnvelope() {
+    document.getElementById('envelopeImg').style.display = 'none';
+    document.getElementById('envelopeText').style.display = 'none';
+    document.getElementById('letterContent').classList.add('show');
+  }
+</script>
+
+</body>
+</html>
