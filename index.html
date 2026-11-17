@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +24,7 @@
       justify-content: center;
       align-items: center;
       font-family: 'Patrick Hand', cursive;
-      background: #2a2a2a; /* Dark background behind the card */
+      background: #2a2a2a;
       overflow: hidden;
     }
 
@@ -34,7 +35,7 @@
       height: 100vh;
       max-height: 600px;
       position: relative;
-      background-color: #d8547a; /* The dark pink frame */
+      background-color: #d8547a;
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
@@ -44,11 +45,10 @@
       position: absolute;
       top: 0; bottom: 0; left: 0; right: 0;
       background-color: #fcf9f5;
-      background-image: 
+      background-image:
         linear-gradient(#e5e5e5 1px, transparent 1px),
         linear-gradient(90deg, #e5e5e5 1px, transparent 1px);
       background-size: 25px 25px;
-      /* Creating the wavy blob shape from the screenshots */
       clip-path: polygon(
         25% 0%, 100% 0%, 100% 85%, 75% 100%, 0% 100%, 0% 30%, 15% 15%
       );
@@ -57,7 +57,7 @@
       transition: all 0.5s ease;
     }
 
-    /* Pink wavy blobs using CSS border-radius */
+    /* Pink wavy blobs */
     .pink-blob-left {
       position: absolute;
       top: -10%; left: -10%;
@@ -66,6 +66,7 @@
       border-radius: 50% 40% 50% 30%;
       z-index: 1;
     }
+
     .pink-blob-right {
       position: absolute;
       bottom: -15%; right: -5%;
@@ -154,7 +155,10 @@
       text-underline-offset: 6px;
       transition: transform 0.2s;
     }
-    .btn-pink:hover { transform: scale(1.05); }
+
+    .btn-pink:hover {
+      transform: scale(1.05);
+    }
 
     .btn-text {
       background: none;
@@ -171,7 +175,10 @@
       right: 40px;
       transition: transform 0.2s;
     }
-    .btn-text:hover { transform: scale(1.1); }
+
+    .btn-text:hover {
+      transform: scale(1.1);
+    }
 
     .btn-text-pink {
       color: #b54a6b;
@@ -188,14 +195,17 @@
       object-fit: contain;
       z-index: 15;
     }
+
     .sticker-float {
       animation: float 3s ease-in-out infinite;
     }
+
     .sticker-tr {
       position: absolute;
       top: 30px; right: 50px;
       max-width: 200px;
     }
+
     .sticker-center {
       margin-bottom: -15px;
     }
@@ -211,8 +221,11 @@
       transition: transform 0.3s;
       margin-bottom: 20px;
     }
-    .envelope-wrapper:hover { transform: scale(1.05); }
-    
+
+    .envelope-wrapper:hover {
+      transform: scale(1.05);
+    }
+
     .envelope-img {
       width: 300px;
     }
@@ -230,7 +243,10 @@
       position: relative;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
-    .letter-content.show { display: flex; }
+
+    .letter-content.show {
+      display: flex;
+    }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(30px); }
@@ -242,8 +258,10 @@
       gap: 10px;
       margin-top: 15px;
     }
+
     .locket-photo {
-      width: 90px; height: 90px;
+      width: 90px;
+      height: 90px;
       object-fit: cover;
       clip-path: path('M45,80 C22,60 0,45 0,27 C0,12 12,0 27,0 C36,0 43,5 45,13 C47,5 54,0 63,0 C78,0 90,12 90,27 C90,45 68,60 45,80 Z');
     }
@@ -257,6 +275,7 @@
       justify-content: center;
       gap: 30px;
     }
+
     .clothesline {
       position: absolute;
       top: 15px; left: 10%; right: 10%;
@@ -265,6 +284,7 @@
       box-shadow: 0 1px 3px rgba(0,0,0,0.2);
       z-index: 0;
     }
+
     .polaroid {
       background: #fff;
       padding: 10px 10px 35px 10px;
@@ -272,7 +292,13 @@
       z-index: 2;
       position: relative;
     }
-    .polaroid img { width: 140px; height: 140px; object-fit: cover; }
+
+    .polaroid img {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+    }
+
     .clip {
       position: absolute;
       top: -15px; left: 50%;
@@ -282,21 +308,156 @@
       border-radius: 2px;
     }
 
-    /* ========== GIFT & HUG (SCREENS 8 & 9) ========== */
+    /* ========== GIFT & HUG ========== */
     .gift-box {
       width: 250px;
       cursor: pointer;
       animation: float 3s ease-in-out infinite;
     }
+
     .hug-video {
       width: 400px;
       border-radius: 20px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
+
     .corner-decor {
       position: absolute;
       bottom: 20px; right: 20px;
       width: 120px;
+    }
+
+    /* ========== JAR OF LOVE (SCREEN 9) ========== */
+    .jar-screen-title {
+      color: #b54a6b;
+      font-size: 3rem;
+      margin-bottom: 8px;
+    }
+
+    .jar-screen-subtitle {
+      color: #75515d;
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+    }
+
+    .love-jar-button {
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      padding: 0;
+      animation: float 3s ease-in-out infinite;
+      transition: transform 0.25s ease;
+    }
+
+    .love-jar-button:hover {
+      transform: scale(1.04);
+    }
+
+    .love-jar-image {
+      width: 260px;
+      height: 260px;
+      max-width: 65vw;
+      object-fit: contain;
+      display: block;
+    }
+
+    .jar-tap-hint {
+      color: #b54a6b;
+      font-size: 1.35rem;
+      margin-top: 8px;
+    }
+
+    .jar-quote-area {
+      width: min(560px, 90%);
+      min-height: 125px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 12px;
+      cursor: pointer;
+    }
+
+    .jar-quote {
+      display: none;
+      width: 100%;
+      padding: 18px 22px;
+      border: 2px solid #f2c4d1;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.94);
+      color: #8f3e5b;
+      font-size: 1.35rem;
+      line-height: 1.45;
+      box-shadow: 0 8px 22px rgba(181,74,107,0.14);
+    }
+
+    .jar-quote.show {
+      display: block;
+      animation: quotePop 0.65s cubic-bezier(.18,.89,.32,1.28) both;
+    }
+
+    @keyframes quotePop {
+      0% { opacity: 0; transform: translateY(35px) scale(0.75); }
+      70% { opacity: 1; transform: translateY(-5px) scale(1.04); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .jar-next-hint {
+      display: none;
+      color: #b54a6b;
+      font-size: 1.15rem;
+      margin-top: 10px;
+    }
+
+    .jar-next-hint.show {
+      display: block;
+      animation: fadeUp 0.4s ease both;
+    }
+
+    .jar-continue {
+      display: none;
+      margin-top: 8px;
+      background: #b54a6b;
+      color: #fff;
+      border: 0;
+      border-radius: 25px;
+      padding: 10px 28px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.25rem;
+      cursor: pointer;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .jar-continue.show {
+      display: inline-block;
+    }
+
+    .jar-floating-hearts {
+      color: #d8547a;
+      font-size: 1.5rem;
+      letter-spacing: 8px;
+      margin-top: 4px;
+      animation: float 2.5s ease-in-out infinite;
+    }
+
+    @media (max-width: 600px) {
+      .jar-screen-title {
+        font-size: 2.35rem;
+      }
+
+      .love-jar-image {
+        width: 220px;
+        height: 220px;
+      }
+
+      .jar-quote {
+        font-size: 1.15rem;
+        padding: 14px 16px;
+      }
+
+      .jar-quote-area {
+        min-height: 145px;
+      }
     }
 
     /* ========== PASSWORD INPUT ========== */
@@ -310,244 +471,307 @@
       font-family: 'Fredoka', sans-serif;
       margin-bottom: 20px;
     }
-    .error-msg { color: #b54a6b; font-size: 1.2rem; font-weight: bold; }
+
+    .error-msg {
+      color: #b54a6b;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
 
     /* ========== MUSIC ========== */
     .music-btn {
-      position: absolute; top: 15px; left: 15px;
-      width: 40px; height: 40px;
-      background: #fff; border: 2px solid #b54a6b; border-radius: 50%;
-      color: #b54a6b; cursor: pointer; z-index: 999;
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      width: 40px;
+      height: 40px;
+      background: #fff;
+      border: 2px solid #b54a6b;
+      border-radius: 50%;
+      color: #b54a6b;
+      cursor: pointer;
+      z-index: 999;
     }
 
     /* Responsive for smaller laptops/tablets */
     @media (max-width: 850px) {
-      .card-wrapper { width: 100vw; height: 100vh; border-radius: 0; }
-      .polaroid img { width: 100px; height: 100px; }
-      h1.blocky { font-size: 2.5rem; }
-      h2.cursive { font-size: 2.2rem; }
+      .card-wrapper {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+      }
+
+      .polaroid img {
+        width: 100px;
+        height: 100px;
+      }
+
+      h1.blocky {
+        font-size: 2.5rem;
+      }
+
+      h2.cursive {
+        font-size: 2.2rem;
+      }
     }
   </style>
 </head>
+
 <body>
+  <div class="card-wrapper">
 
-  
-  <!-- Wavy Backgrounds -->
-  <div class="pink-blob-left"></div>
-  <div class="pink-blob-right"></div>
-  <div class="grid-bg"></div>
+    <!-- Wavy Backgrounds -->
+    <div class="pink-blob-left"></div>
+    <div class="pink-blob-right"></div>
+    <div class="grid-bg"></div>
 
-  <!-- ============================================ -->
-  <!-- SCREEN 1: PASSWORD -->
-  <!-- ============================================ -->
-  <div class="screen active" id="screen1">
-    <h2 class="cursive">Enter the password to view 💕</h2>
-    <input type="password" class="password-input" id="passwordInput" placeholder="Password..." autocomplete="off">
-    <button class="btn-pink" onclick="checkPassword()" style="text-decoration:none;">Unlock</button>
-    <p class="error-msg" id="errorMsg"></p>
-  </div>
-
-  <!-- ============================================ -->
-  <!-- SCREEN 2: THE ASK -->
-  <!-- ============================================ -->
-  <div class="screen" id="screen2">
-    <!-- Dog with rose top right -->
-    <img src="assets/puppy-rose.gif" class="sticker sticker-tr" alt="Puppy with Rose">
-
-    <h1 class="blocky">HEY!!</h1>
-    <h2 class="cursive">I made something for you</h2>
-    <h3 class="cursive-thin">Do you want to see?</h3>
-
-    <div class="btn-row">
-      <button class="btn-pink" onclick="goToScreen('screen4')">Yes</button>
-      <button class="btn-pink" onclick="goToScreen('screen3')">No</button>
-    </div>
-  </div>
-
-  <!-- ============================================ -->
-  <!-- SCREEN 3: TRAP (NO) -->
-  <!-- ============================================ -->
-  <div class="screen" id="screen3">
-    <img src="assets/angry-puppy.gif" class="sticker sticker-center" alt="Angry Puppy">
-    <h1 class="blocky" style="margin-top: 10px;">HOW DARE YOU</h1>
-    
-    <div class="btn-row">
-      <button class="btn-pink" onclick="goToScreen('screen2')">Go back</button>
-    </div>
-  </div>
-
-  <!-- ============================================ -->
-  <!-- SCREEN 4: YES / GOOD GURL -->
-  <!-- ============================================ -->
-  <div class="screen" id="screen4">
-    <img src="assets/happy-dog.gif" class="sticker sticker-center" alt="Happy Dog">
-    <h1 class="blocky" style="margin-top: 10px;">That's a good gurl!!</h1>
-    
-    <div class="btn-row">
-      <button class="btn-pink" onclick="goToScreen('screen5')">Click</button>
-    </div>
-  </div>
-
-  <!-- ============================================ -->
-  <!-- SCREEN 5: BIRTHDAY WISH -->
-  <!-- ============================================ -->
-  <div class="screen" id="screen5">
-    <img src="assets/bday-dog.gif" class="sticker sticker-center" alt="Birthday Dog">
-    <h1 class="blocky">HAPPY BIRTHDAY BBG</h1>
-    <p class="caps">YOU ARE MY FAVORITE NOTIFICATION 💕</p>
-    <p class="caps">STAY CUTE, STAY HAPPY, STAY MINE 🔪💕</p>
-
-    <!-- Bottom right "Next" button -->
-    <button class="btn-text" onclick="goToScreen('screen6')">Next</button>
-  </div>
-
-  <!-- ============================================ -->
-  <!-- SCREEN 6: ENVELOPE & LETTER -->
-  <!-- ============================================ -->
-  <div class="screen" id="screen6">
-    
-    <div class="envelope-wrapper" id="envelopeWrapper" onclick="openEnvelope()">
-      <img src="assets/envelope.png" class="envelope-img" id="envelopeImg" alt="Pink Envelope">
-      <h2 class="cursive" id="envelopeText" style="color: #b54a6b; text-decoration: underline;">Tap here to open</h2>
+    <!-- ============================================ -->
+    <!-- SCREEN 1: PASSWORD -->
+    <!-- ============================================ -->
+    <div class="screen active" id="screen1">
+      <h2 class="cursive">Enter the password to view 💕</h2>
+      <input type="password" class="password-input" id="passwordInput" placeholder="Password..." autocomplete="off">
+      <button class="btn-pink" onclick="checkPassword()" style="text-decoration:none;">Unlock</button>
+      <p class="error-msg" id="errorMsg"></p>
     </div>
 
-    <!-- Letter Content -->
-    <div class="letter-content" id="letterContent">
-      <div style="font-family: 'Patrick Hand', cursive; font-size: 1.3rem; color: #333; text-align: center;">
-        <p>Happy Birthday to the person who makes my world a little brighter just by being in it. ❤️</p>
-        <p>I’m so grateful for every smile, every memory, and every moment we share.</p>
-        <p>You deserve all the happiness, love, and beautiful things life has to offer. ✨</p>
-        <p>I hope this year brings you closer to all your dreams.</p>
-        <p style="font-weight: bold; color: #b54a6b; margin-top:10px;">Happy Birthday, my love — you’ll always have a special place in my heart. ❤️🎂</p>
+    <!-- ============================================ -->
+    <!-- SCREEN 2: THE ASK -->
+    <!-- ============================================ -->
+    <div class="screen" id="screen2">
+      <img src="assets/puppy-rose.gif" class="sticker sticker-tr" alt="Puppy with Rose">
+
+      <h1 class="blocky">HEY!!</h1>
+      <h2 class="cursive">I made something for you</h2>
+      <h3 class="cursive-thin">Do you want to see?</h3>
+
+      <div class="btn-row">
+        <button class="btn-pink" onclick="goToScreen('screen4')">Yes</button>
+        <button class="btn-pink" onclick="goToScreen('screen3')">No</button>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SCREEN 3: TRAP (NO) -->
+    <!-- ============================================ -->
+    <div class="screen" id="screen3">
+      <img src="assets/angry-puppy.gif" class="sticker sticker-center" alt="Angry Puppy">
+      <h1 class="blocky" style="margin-top: 10px;">HOW DARE YOU</h1>
+
+      <div class="btn-row">
+        <button class="btn-pink" onclick="goToScreen('screen2')">Go back</button>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SCREEN 4: YES / GOOD GURL -->
+    <!-- ============================================ -->
+    <div class="screen" id="screen4">
+      <img src="assets/happy-dog.gif" class="sticker sticker-center" alt="Happy Dog">
+      <h1 class="blocky" style="margin-top: 10px;">That's a good gurl!!</h1>
+
+      <div class="btn-row">
+        <button class="btn-pink" onclick="goToScreen('screen5')">Click</button>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SCREEN 5: BIRTHDAY WISH -->
+    <!-- ============================================ -->
+    <div class="screen" id="screen5">
+      <img src="assets/bday-dog.gif" class="sticker sticker-center" alt="Birthday Dog">
+      <h1 class="blocky">HAPPY BIRTHDAY BBG</h1>
+      <p class="caps">YOU ARE MY FAVORITE NOTIFICATION 💕</p>
+      <p class="caps">STAY CUTE, STAY HAPPY, STAY MINE 🔪💕</p>
+
+      <button class="btn-text" onclick="goToScreen('screen6')">Next</button>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SCREEN 6: ENVELOPE & LETTER -->
+    <!-- ============================================ -->
+    <div class="screen" id="screen6">
+
+      <div class="envelope-wrapper" id="envelopeWrapper" onclick="openEnvelope()">
+        <img src="assets/envelope.png" class="envelope-img" id="envelopeImg" alt="Pink Envelope">
+        <h2 class="cursive" id="envelopeText" style="color: #b54a6b; text-decoration: underline;">Tap here to open</h2>
       </div>
 
-      <!-- Locket Photos -->
-      <div class="locket-photos">
-        <img src="assets/couple-heart1.jpg" class="locket-photo" alt="Photo 1">
-        <img src="assets/couple-heart2.jpg" class="locket-photo" alt="Photo 2">
+      <div class="letter-content" id="letterContent">
+        <div style="font-family: 'Patrick Hand', cursive; font-size: 1.3rem; color: #333; text-align: center;">
+          <p>Happy Birthday to the person who makes my world a little brighter just by being in it. ❤️</p>
+          <p>I’m so grateful for every smile, every memory, and every moment we share.</p>
+          <p>You deserve all the happiness, love, and beautiful things life has to offer. ✨</p>
+          <p>I hope this year brings you closer to all your dreams.</p>
+          <p style="font-weight: bold; color: #b54a6b; margin-top:10px;">Happy Birthday, my love — you’ll always have a special place in my heart. ❤️🎂</p>
+        </div>
+
+        <div class="locket-photos">
+          <img src="assets/couple-heart1.jpg" class="locket-photo" alt="Photo 1">
+          <img src="assets/couple-heart2.jpg" class="locket-photo" alt="Photo 2">
+        </div>
+
+        <button class="btn-text btn-text-pink" onclick="goToScreen('screen7')">
+          <img src="assets/camera-icon.png" style="width:30px; vertical-align:middle;"> Click here
+        </button>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SCREEN 7: PHOTO WALL -->
+    <!-- ============================================ -->
+    <div class="screen" id="screen7">
+      <div class="polaroid-wall">
+        <div class="clothesline"></div>
+
+        <div class="polaroid" style="transform: rotate(-4deg);">
+          <div class="clip"></div>
+          <img src="assets/photo1.jpg" alt="Memory 1">
+        </div>
+
+        <div class="polaroid" style="transform: rotate(2deg); margin-top: 15px;">
+          <div class="clip"></div>
+          <img src="assets/photo2.jpg" alt="Memory 2">
+        </div>
+
+        <div class="polaroid" style="transform: rotate(-3deg);">
+          <div class="clip"></div>
+          <img src="assets/photo3.jpg" alt="Memory 3">
+        </div>
+
+        <div class="polaroid" style="transform: rotate(4deg); margin-top: 15px;">
+          <div class="clip"></div>
+          <img src="assets/photo4.jpg" alt="Memory 4">
+        </div>
       </div>
 
-      <button class="btn-text btn-text-pink" onclick="goToScreen('screen7')">
-        <img src="assets/camera-icon.png" style="width:30px; vertical-align:middle;"> Click here
+      <h1 class="blocky" style="font-size: 4rem; color: #ffb6c1;">I LOVE YOU</h1>
+      <p style="font-family: 'Patrick Hand', cursive; font-size: 1.5rem; color: #fff;">You don't know how much you mean to me</p>
+
+      <button class="btn-text" onclick="goToScreen('screen8')">
+        <img src="assets/gift-icon.png" style="width:40px; vertical-align:middle;"> Click here
       </button>
     </div>
-  </div>
 
-  <!-- ============================================ -->
-  <!-- SCREEN 7: PHOTO WALL -->
-  <!-- ============================================ -->
-  <div class="screen" id="screen7">
-    <div class="polaroid-wall">
-      <div class="clothesline"></div>
-      
-      <div class="polaroid" style="transform: rotate(-4deg);">
-        <div class="clip"></div>
-        <img src="assets/photo1.jpg" alt="Memory 1">
-      </div>
-      
-      <div class="polaroid" style="transform: rotate(2deg); margin-top: 15px;">
-        <div class="clip"></div>
-        <img src="assets/photo2.jpg" alt="Memory 2">
-      </div>
-      
-      <div class="polaroid" style="transform: rotate(-3deg);">
-        <div class="clip"></div>
-        <img src="assets/photo3.jpg" alt="Memory 3">
-      </div>
+    <!-- ============================================ -->
+    <!-- SCREEN 8: SURPRISE BOX -->
+    <!-- ============================================ -->
+    <div class="screen" id="screen8">
+      <h2 class="cursive" style="color: #b54a6b; font-size: 3.5rem;">Here's a surprise for you!!!</h2>
+
+      <img src="assets/gift-box.png" class="gift-box" onclick="goToScreen('screen9')" alt="Gift Box">
+      <p style="font-family: 'Patrick Hand', cursive; font-size: 1.5rem; color: #555;">↖ Tap here</p>
+
+      <img src="assets/dog-bag.png" class="corner-decor" alt="Dog with bag">
     </div>
 
-    <h1 class="blocky" style="font-size: 4rem; color: #ffb6c1;">I LOVE YOU</h1>
-    <p style="font-family: 'Patrick Hand', cursive; font-size: 1.5rem; color: #fff;">You don't know how much you mean to me</p>
+    <!-- ============================================ -->
+    <!-- SCREEN 9: JAR OF LOVE -->
+    <!-- ============================================ -->
+    <div class="screen" id="screen9">
+      <h2 class="cursive jar-screen-title">A Jar Full of Love 💗</h2>
+      <p class="jar-screen-subtitle">I saved a few little wishes just for you...</p>
 
-    <!-- Bottom right Click here + Gift Icon -->
-    <button class="btn-text" onclick="goToScreen('screen8')">
-      <img src="assets/gift-icon.png" style="width:40px; vertical-align:middle;"> Click here
-    </button>
+      <button class="love-jar-button" id="loveJarButton" onclick="openLoveJar()" aria-label="Open the jar of love">
+        <img src="assets/love-jar.png" class="love-jar-image" alt="A jar decorated with pink hearts">
+      </button>
+
+      <p class="jar-tap-hint" id="jarTapHint">Tap the jar to open it ✨</p>
+      <div class="jar-floating-hearts" aria-hidden="true">💕 ✨ 💗</div>
+
+      <div class="jar-quote-area" id="jarQuoteArea" onclick="nextJarQuote()">
+        <div class="jar-quote" id="jarQuote1">
+          “Out of all the beautiful things in this world, I'm glad that life gave me the chance to know you. You make my days a little brighter just by being you. ❤️”
+        </div>
+
+        <div class="jar-quote" id="jarQuote2">
+          “If I could wrap all my wishes into one gift, it would be a lifetime of happiness, endless smiles, beautiful memories and everything your heart dreams of. Happy Birthday! 🌷”
+        </div>
+
+        <p class="jar-next-hint" id="jarNextHint">Tap here for one more wish 💌</p>
+      </div>
+
+      <button class="jar-continue" id="jarContinue" onclick="goToScreen('screen10')">Continue to your surprise 💗</button>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SCREEN 10: VIRTUAL HUG -->
+    <!-- ============================================ -->
+    <div class="screen" id="screen10">
+      <h2 class="cursive" style="color: #b54a6b; font-size: 3.5rem; margin-bottom: 20px;">Here is virtual hug for you</h2>
+
+      <video class="hug-video" id="hugVideo" loop muted playsinline>
+        <source src="assets/hug-video.mp4" type="video/mp4">
+      </video>
+
+      <img src="assets/bday-flowers.png" class="corner-decor" alt="Happy Birthday Flowers">
+    </div>
+
   </div>
 
-  <!-- ============================================ -->
-  <!-- SCREEN 8: SURPRISE BOX -->
-  <!-- ============================================ -->
-  <div class="screen" id="screen8">
-    <h2 class="cursive" style="color: #b54a6b; font-size: 3.5rem;">Here's a surprise for you!!!</h2>
-    
-    <img src="assets/gift-box.png" class="gift-box" onclick="goToScreen('screen9')" alt="Gift Box">
-    <p style="font-family: 'Patrick Hand', cursive; font-size: 1.5rem; color: #555;">↖ Tap here</p>
+  <!-- JAVASCRIPT -->
+  <script>
+    const SECRET_PASSWORD = "iloveyou";
 
-    <img src="assets/dog-bag.png" class="corner-decor" alt="Dog with bag">
-  </div>
+    // Password Logic
+    function checkPassword() {
+      const input = document.getElementById('passwordInput').value.trim().toLowerCase();
 
-  <!-- ============================================ -->
-  <!-- SCREEN 9: VIRTUAL HUG -->
-  <!-- ============================================ -->
-  <div class="screen" id="screen9">
-    <h2 class="cursive" style="color: #b54a6b; font-size: 3.5rem; margin-bottom: 20px;">Here is virtual hug for you</h2>
-    
-    <video class="hug-video" id="hugVideo" loop muted playsinline>
-      <source src="assets/hug-video.mp4" type="video/mp4">
-    </video>
-
-    <img src="assets/bday-flowers.png" class="corner-decor" alt="Happy Birthday Flowers">
-  </div>
-
-</div>
-
-<!-- JAVASCRIPT -->
-<script>
-  const SECRET_PASSWORD = "iloveyou";
-
-  // Music Controls
-  const bgMusic = document.getElementById('bgMusic');
-  const musicBtn = document.getElementById('musicBtn');
-  let isPlaying = false;
-
-  function toggleMusic() {
-    if (isPlaying) {
-      bgMusic.pause();
-      musicBtn.textContent = '▶';
-      isPlaying = false;
-    } else {
-      bgMusic.volume = 0.4;
-      bgMusic.play().then(() => {
-        musicBtn.textContent = '⏸';
-        isPlaying = true;
-      });
+      if (input === SECRET_PASSWORD.toLowerCase()) {
+        document.getElementById('errorMsg').textContent = '';
+        goToScreen('screen2');
+      } else {
+        document.getElementById('errorMsg').textContent = '❌ Wrong password!';
+      }
     }
-  }
 
-  // Password Logic
-  function checkPassword() {
-    const input = document.getElementById('passwordInput').value.trim().toLowerCase();
-    if (input === SECRET_PASSWORD.toLowerCase()) {
-      document.getElementById('errorMsg').textContent = '';
-      goToScreen('screen2');
-      if (!isPlaying) toggleMusic(); // auto play music
-    } else {
-      document.getElementById('errorMsg').textContent = '❌ Wrong password!';
+    document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') checkPassword();
+    });
+
+    // Screen Switcher
+    function goToScreen(screenId) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(screenId).classList.add('active');
+
+      if (screenId === 'screen10') {
+        const hugVideo = document.getElementById('hugVideo');
+        hugVideo.play().catch(() => {
+          console.log('Video playback could not start automatically.');
+        });
+      }
     }
-  }
-  document.getElementById('passwordInput').addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') checkPassword();
-  });
 
-  // Screen Switcher
-  function goToScreen(screenId) {
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    document.getElementById(screenId).classList.add('active');
+    // Jar of Love: reveal one birthday wish at a time
+    let jarQuoteStep = 0;
 
-    // Auto-play the hug video when reaching Screen 9
-    if (screenId === 'screen9') {
-      document.getElementById('hugVideo').play();
+    function openLoveJar() {
+      if (jarQuoteStep !== 0) return;
+
+      jarQuoteStep = 1;
+      document.getElementById('loveJarButton').style.transform = 'scale(0.92)';
+      document.getElementById('jarTapHint').style.display = 'none';
+      document.getElementById('jarQuote1').classList.add('show');
+      document.getElementById('jarNextHint').classList.add('show');
     }
-  }
 
-  // Open Envelope
-  function openEnvelope() {
-    document.getElementById('envelopeImg').style.display = 'none';
-    document.getElementById('envelopeText').style.display = 'none';
-    document.getElementById('letterContent').classList.add('show');
-  }
-</script>
+    function nextJarQuote() {
+      if (jarQuoteStep !== 1) return;
+
+      jarQuoteStep = 2;
+      document.getElementById('jarQuote1').classList.remove('show');
+      document.getElementById('jarQuote2').classList.add('show');
+      document.getElementById('jarNextHint').classList.remove('show');
+      document.getElementById('jarContinue').classList.add('show');
+    }
+
+    // Open Envelope
+    function openEnvelope() {
+      document.getElementById('envelopeImg').style.display = 'none';
+      document.getElementById('envelopeText').style.display = 'none';
+      document.getElementById('letterContent').classList.add('show');
+    }
+  </script>
 
 </body>
 </html>
