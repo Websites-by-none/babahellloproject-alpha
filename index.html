@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>💖 For You 💖</title>
 
-  <!-- Google Fonts: Fredoka (Bold), Patrick Hand (Handwriting), Dancing Script (Cursive) -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Fredoka:wght@500;600;700&family=Patrick+Hand&display=swap" rel="stylesheet">
 
   <style>
@@ -493,6 +493,18 @@
       z-index: 999;
     }
 
+    /* Keep all five photo cards inside the 800px photo wall */
+    @media (min-width: 851px) {
+      .polaroid-wall {
+        gap: 8px;
+      }
+
+      .polaroid img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
     /* Responsive for smaller laptops/tablets */
     @media (max-width: 850px) {
       .card-wrapper {
@@ -597,6 +609,7 @@
         <h2 class="cursive" id="envelopeText" style="color: #b54a6b; text-decoration: underline;">Tap here to open</h2>
       </div>
 
+      <!-- Letter Content -->
       <div class="letter-content" id="letterContent">
         <div style="font-family: 'Patrick Hand', cursive; font-size: 1.3rem; color: #333; text-align: center;">
           <p>Happy Birthday to the person who makes my world a little brighter just by being in it. ❤️</p>
@@ -606,6 +619,7 @@
           <p style="font-weight: bold; color: #b54a6b; margin-top:10px;">Happy Birthday, my love — you’ll always have a special place in my heart. ❤️🎂</p>
         </div>
 
+        <!-- Locket Photos -->
         <div class="locket-photos">
           <img src="assets/couple-heart1.jpg" class="locket-photo" alt="Photo 1">
           <img src="assets/couple-heart2.jpg" class="locket-photo" alt="Photo 2">
@@ -642,6 +656,11 @@
         <div class="polaroid" style="transform: rotate(4deg); margin-top: 15px;">
           <div class="clip"></div>
           <img src="assets/photo4.jpg" alt="Memory 4">
+        </div>
+
+        <div class="polaroid" style="transform: rotate(-2deg); margin-top: 5px;">
+          <div class="clip"></div>
+          <img src="assets/photo5.jpg" alt="Memory 5">
         </div>
       </div>
 
@@ -688,7 +707,7 @@
           “If I could wrap all my wishes into one gift, it would be a lifetime of happiness, endless smiles, beautiful memories and everything your heart dreams of. Happy Birthday! 🌷”
         </div>
 
-        <p class="jar-next-hint" id="jarNextHint">Tap here for one more wish 💌</p>
+        <p class="jar-next-hint" id="jarNextHint">Tap anywhere here for one more wish 💌</p>
       </div>
 
       <button class="jar-continue" id="jarContinue" onclick="goToScreen('screen10')">Continue to your surprise 💗</button>
@@ -734,6 +753,7 @@
       document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
       document.getElementById(screenId).classList.add('active');
 
+      // Auto-play the hug video when reaching Screen 10
       if (screenId === 'screen10') {
         const hugVideo = document.getElementById('hugVideo');
         hugVideo.play().catch(() => {
