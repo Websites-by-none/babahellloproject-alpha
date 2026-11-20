@@ -344,9 +344,9 @@
       border: 0;
       background: transparent;
       cursor: pointer;
-      padding: 0;
       animation: float 3s ease-in-out infinite;
       transition: transform 0.25s ease;
+      padding: 0;
     }
 
     .love-jar-button:hover {
@@ -526,6 +526,59 @@
         font-size: 2.2rem;
       }
     }
+
+    /* ========== BIRTHDAY CAKE SCREEN ========== */
+    .cake-title {
+      color: #b54a6b;
+      font-family: 'Dancing Script', cursive;
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .cake-illustration {
+      font-size: 115px;
+      line-height: 1.3;
+      margin-bottom: 15px;
+    }
+
+    .cake-candles {
+      font-size: 35px;
+      letter-spacing: 8px;
+      margin-bottom: -5px;
+    }
+
+    .cake-message {
+      color: #b54a6b;
+      font-size: 1.4rem;
+      margin: 15px 0;
+      line-height: 1.4;
+    }
+
+    .cake-button {
+      background: #b54a6b;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 12px 35px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.5rem;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    .cake-next {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .cake-title {
+        font-size: 2.4rem;
+      }
+
+      .cake-illustration {
+        font-size: 90px;
+      }
+    }
   </style>
 </head>
 
@@ -583,8 +636,30 @@
       <h1 class="blocky" style="margin-top: 10px;">That's a good gurl!!</h1>
 
       <div class="btn-row">
-        <button class="btn-pink" onclick="goToScreen('screen5')">Click</button>
+        <button class="btn-pink" onclick="goToScreen('cakeScreen')">Click</button>
       </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- NEW CAKE SCREEN -->
+    <!-- ============================================ -->
+    <div class="screen" id="cakeScreen">
+      <h2 class="cake-title">Make a wish first... ✨</h2>
+
+      <div class="cake-candles" id="cakeCandles">🕯️ 🕯️ 🕯️</div>
+      <div class="cake-illustration">🎂</div>
+
+      <p class="cake-message" id="cakeMessage" style="display: none;">
+        May all your wishes come true. Happy Birthday! ❤️
+      </p>
+
+      <button class="cake-button" id="blowButton" onclick="blowCandles()">
+        Blow 🌬️
+      </button>
+
+      <button class="cake-button cake-next" id="cakeNext" onclick="goToScreen('screen5')">
+        Next →
+      </button>
     </div>
 
     <!-- ============================================ -->
@@ -762,6 +837,14 @@
       }
     }
 
+    // Birthday Cake: extinguish the candles
+    function blowCandles() {
+      document.getElementById('cakeCandles').textContent = '💨';
+      document.getElementById('cakeMessage').style.display = 'block';
+      document.getElementById('blowButton').style.display = 'none';
+      document.getElementById('cakeNext').style.display = 'inline-block';
+    }
+
     // Jar of Love: reveal one birthday wish at a time
     let jarQuoteStep = 0;
 
@@ -769,7 +852,7 @@
       if (jarQuoteStep !== 0) return;
 
       jarQuoteStep = 1;
-      
+
       document.getElementById('jarTapHint').style.display = 'none';
       document.getElementById('jarQuote1').classList.add('show');
       document.getElementById('jarNextHint').classList.add('show');
