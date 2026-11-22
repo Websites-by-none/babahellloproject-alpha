@@ -491,6 +491,7 @@
       color: #b54a6b;
       cursor: pointer;
       z-index: 999;
+      font-size: 18px;
     }
 
     /* Keep all five photo cards inside the 800px photo wall */
@@ -584,6 +585,22 @@
 
 <body>
   <div class="card-wrapper">
+
+    <!-- BIRTHDAY MUSIC BUTTON -->
+    <button class="music-btn" id="musicToggle"
+            onclick="toggleBirthdayMusic()"
+            aria-label="Pause or resume music"
+            style="display: none;">
+      ♫
+    </button>
+
+    <!-- BIRTHDAY SONG -->
+    <video id="birthdaySong"
+           preload="auto"
+           playsinline
+           style="position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none;">
+      <source src="assets/birthday-song.mp4" type="video/mp4">
+    </video>
 
     <!-- Wavy Backgrounds -->
     <div class="pink-blob-left"></div>
@@ -692,10 +709,10 @@
           <p>You deserve all the happiness, love, and beautiful things life has to offer. ✨</p>
           <p>I hope this year brings you closer to all your dreams.</p>
           <p style="font-weight: bold; color: #b54a6b; margin-top:10px;">Happy Birthday, Cham Cham — you’ll always have a special place in my heart. ❤️🎂</p>
-          
+
           <p style="font-family: 'Dancing Script', cursive; font-size: 2rem; font-weight: bold; color: #b54a6b; margin-top: 15px;">
-             I LOVE YOU CHAM CHAM 🤍🌕🦢 </p>
-          
+            I LOVE YOU CHAM CHAM 🤍🌕🦢
+          </p>
         </div>
 
         <!-- Locket Photos -->
@@ -827,10 +844,59 @@
       if (e.key === 'Enter') checkPassword();
     });
 
+    // ============================================
+    // BIRTHDAY MUSIC CONTROLS
+    // ============================================
+
+    let birthdayMusicStarted = false;
+
+    function startBirthdayMusic() {
+      const music = document.getElementById('birthdaySong');
+      const button = document.getElementById('musicToggle');
+
+      music.play()
+        .then(() => {
+          birthdayMusicStarted = true;
+          button.textContent = 'Ⅱ';
+        })
+        .catch(() => {
+          button.textContent = '♫';
+          console.log('Music playback was blocked. Press the music button to play.');
+        });
+    }
+
+    function toggleBirthdayMusic() {
+      const music = document.getElementById('birthdaySong');
+      const button = document.getElementById('musicToggle');
+
+      if (music.paused) {
+        startBirthdayMusic();
+      } else {
+        music.pause();
+        button.textContent = '♫';
+      }
+    }
+
     // Screen Switcher
     function goToScreen(screenId) {
       document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
       document.getElementById(screenId).classList.add('active');
+
+      // Start birthday music when Screen 5 opens
+      if (screenId === 'screen5') {
+        document.getElementById('musicToggle').style.display = 'block';
+
+        if (!birthdayMusicStarted) {
+          startBirthdayMusic();
+        }
+      }
+
+      // Keep music button visible on all remaining screens
+      if (birthdayMusicStarted && screenId !== 'screen1' &&
+          screenId !== 'screen2' && screenId !== 'screen3' &&
+          screenId !== 'screen4' && screenId !== 'cakeScreen') {
+        document.getElementById('musicToggle').style.display = 'block';
+      }
 
       // Auto-play the hug video when reaching Screen 10
       if (screenId === 'screen10') {
