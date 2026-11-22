@@ -849,6 +849,7 @@
     // ============================================
 
     let birthdayMusicStarted = false;
+    let birthdayMusicRequested = false;
 
     function startBirthdayMusic() {
       const music = document.getElementById('birthdaySong');
@@ -882,19 +883,9 @@
       document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
       document.getElementById(screenId).classList.add('active');
 
-      // Start birthday music when Screen 5 opens
-      if (screenId === 'screen5') {
-        document.getElementById('musicToggle').style.display = 'block';
-
-        if (!birthdayMusicStarted) {
-          startBirthdayMusic();
-        }
-      }
-
-      // Keep music button visible on all remaining screens
-      if (birthdayMusicStarted && screenId !== 'screen1' &&
-          screenId !== 'screen2' && screenId !== 'screen3' &&
-          screenId !== 'screen4' && screenId !== 'cakeScreen') {
+      // Show music button from the moment the letter has been opened
+      if (birthdayMusicRequested &&
+          ['screen6', 'screen7', 'screen8', 'screen9', 'screen10'].includes(screenId)) {
         document.getElementById('musicToggle').style.display = 'block';
       }
 
@@ -938,11 +929,21 @@
       document.getElementById('jarContinue').classList.add('show');
     }
 
-    // Open Envelope
+    // Open Envelope and start the birthday song
     function openEnvelope() {
       document.getElementById('envelopeImg').style.display = 'none';
       document.getElementById('envelopeText').style.display = 'none';
       document.getElementById('letterContent').classList.add('show');
+
+      // Start the song only once, when the envelope is first opened
+      if (!birthdayMusicRequested) {
+        birthdayMusicRequested = true;
+
+        const button = document.getElementById('musicToggle');
+        button.style.display = 'block';
+
+        startBirthdayMusic();
+      }
     }
   </script>
 
